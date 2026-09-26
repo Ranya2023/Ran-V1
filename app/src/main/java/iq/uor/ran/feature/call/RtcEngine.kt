@@ -83,6 +83,23 @@ class RtcEngine(
     private var audioSource: AudioSource? = null
     private var audioTrack: AudioTrack? = null
     private var videoSender: RtpSender? = null
+
+    private var camCapturer: CameraVideoCapturer? = null
+    private var camSource: VideoSource? = null
+    private var camHelper: SurfaceTextureHelper? = null
+    private var camTrack: VideoTrack? = null
+
+    private var screenCapturer: VideoCapturer? = null
+    private var screenSource: VideoSource? = null
+    private var screenHelper: SurfaceTextureHelper? = null
+    private var screenTrack: VideoTrack? = null
+
+    private var frontCamera = true
+    private var connectedOnce = false
+    private var closed = false
+    private var remoteSet = false
+    private val pendingIce = mutableListOf<IceCandidate>()
+
     val cameraOn get() = camTrack != null
     val sharing get() = screenTrack != null
 
