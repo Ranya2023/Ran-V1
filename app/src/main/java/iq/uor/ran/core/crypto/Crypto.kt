@@ -162,7 +162,7 @@ class GcmStream(key: ByteArray, private val dir: Byte) {
 }
 
 /** Keys for one secured connection. Initiator and responder mirror each other. */
-class Session(okm: ByteArray, initiator: Boolean) {
+class Session(okm: ByteArray, private val initiator: Boolean) {
     private val a = okm.copyOfRange(0, 32)
     private val b = okm.copyOfRange(32, 64)
     private val c = okm.copyOfRange(64, 96)
