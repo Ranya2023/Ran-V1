@@ -65,7 +65,8 @@ data class CallUi(
     val security: Int = 0,
     val video: Boolean = false,      // my camera is on
     val sharing: Boolean = false,    // I'm sharing my screen
-    val wantVideo: Boolean = false   // the caller asked for a video call
+    val wantVideo: Boolean = false,  // the caller asked for a video call
+    val internet: Boolean = false    // true if this call is relayed over the internet, not local Wi-Fi
 )
 
 data class Settings(
@@ -102,6 +103,7 @@ object Hub {
     val startedAt = System.currentTimeMillis()
     val remoteVideo = MutableStateFlow(false)  // receiving video frames
     val chatVersion = MutableStateFlow(0)   // bumped whenever messages change
+    val cloud = MutableStateFlow(0)         // internet relay status: 0 off, 1 connecting, 2 connected
     @Volatile var openChat: String? = null  // code of the chat currently on screen
 
     fun isBusy(): Boolean = call.value.phase.let { it != Phase.IDLE && it != Phase.ENDED }
