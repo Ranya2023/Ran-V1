@@ -160,6 +160,7 @@ fun OnboardingScreen(onDone: () -> Unit) {
     var number by remember { mutableStateOf("") }
     var name by remember { mutableStateOf(s.name) }
     var avatar by remember { mutableStateOf(s.avatar) }
+    var obVisible by remember { mutableStateOf(s.visible) }
     var pickCountry by remember { mutableStateOf(false) }
     val ctx = LocalContext.current
     val problem = Countries.problem(country, number)
